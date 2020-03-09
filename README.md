@@ -1,0 +1,1 @@
+# Architekt_NBG_09032020
