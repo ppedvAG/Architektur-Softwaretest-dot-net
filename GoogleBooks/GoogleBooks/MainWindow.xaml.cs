@@ -36,7 +36,7 @@ namespace GoogleBooks
         {
             //stop UI 
             //https://stackoverflow.com/a/3383010
-            var d = Dispatcher.DisableProcessing();
+          //  var d = Dispatcher.DisableProcessing();
 
 
             ((Button)sender).IsEnabled = !true;
@@ -50,10 +50,10 @@ namespace GoogleBooks
             }
             ((Button)sender).IsEnabled = !!true;
 
-            d.Dispose();
+//            d.Dispose();
         }
 
-        private void HalloTask(object sender, RoutedEventArgs e)
+        private  void HalloTask(object sender, RoutedEventArgs e)
         {
             //Dispatcher = doof aber geht: muss auf UI warten
             //Task.Run(() =>
@@ -74,7 +74,7 @@ namespace GoogleBooks
                 for (int i = 0; i < 100; i++)
                 {
                     Task.Factory.StartNew(() => pb1.Value = i, CancellationToken.None, TaskCreationOptions.None, ts);
-                    Thread.Sleep(50);
+                    //Thread.Sleep(50);
                 }
                 Task.Factory.StartNew(() => ((Button)sender).IsEnabled = true, CancellationToken.None, TaskCreationOptions.None, ts);
             });
