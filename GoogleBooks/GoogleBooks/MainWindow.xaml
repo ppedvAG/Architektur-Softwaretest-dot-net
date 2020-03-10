@@ -1,0 +1,20 @@
+﻿<Window x:Class="GoogleBooks.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GoogleBooks"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="400">
+    <DockPanel>
+        <WrapPanel Margin="4" DockPanel.Dock="Top">
+            <TextBox Name="suchTb" Width="100" Text="Bier"/>
+            <Button Click="Laden">Suche</Button>
+            <Button Click="HalloTask">Hallo Task</Button>
+            <Button Click="HalloAsync">Hallo Async </Button>
+            <ProgressBar Width="120" Name="pb1"/>
+        </WrapPanel>
+        <DataGrid Name="myGrid"/>
+    </DockPanel>
+
+</Window>
