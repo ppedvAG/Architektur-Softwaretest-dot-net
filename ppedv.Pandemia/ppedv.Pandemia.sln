@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.Pandemia.UI.DevConsol
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.Pandemia.Data.XML", "ppedv.Pandemia.Data.XML\ppedv.Pandemia.Data.XML.csproj", "{D4972863-4817-413F-8DEA-2F39D295E89F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.Pandemia.Data.XML.Test", "ppedv.Pandemia.Data.XML.Test\ppedv.Pandemia.Data.XML.Test.csproj", "{BF2AA104-0DE1-4775-A628-899655B320A8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{D4972863-4817-413F-8DEA-2F39D295E89F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4972863-4817-413F-8DEA-2F39D295E89F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4972863-4817-413F-8DEA-2F39D295E89F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF2AA104-0DE1-4775-A628-899655B320A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF2AA104-0DE1-4775-A628-899655B320A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF2AA104-0DE1-4775-A628-899655B320A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF2AA104-0DE1-4775-A628-899655B320A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

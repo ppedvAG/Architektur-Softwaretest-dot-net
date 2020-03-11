@@ -4,64 +4,105 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace ppedv.Pandemia.Data.XML
 {
-    public class XmlRepository : IRepository
-    {
-        string infFile = "inf.xml";
-        List<Infektion> infektions = new List<Infektion>();
 
-        public XmlRepository()
+    public class XmlDataContainer
+    {
+        public HashSet<Land> Laender { get; set; } = new HashSet<Land>();
+        public HashSet<Region> Regionen { get; set; } = new HashSet<Region>();
+        public HashSet<Infektion> Infektionen { get; set; } = new HashSet<Infektion>();
+        public HashSet<Virus> Viren { get; set; } = new HashSet<Virus>();
+
+    }
+
+    public class XmlRepository : IRepository,IDisposable
+    {
+        XmlDataContainer container = new XmlDataContainer();
+        string filename;
+        public XmlRepository(string filename = "pandemia.xml")
         {
-            LoadInf();
+            this.filename = filename;
+            LoadAll();
         }
 
-        private void LoadInf()
+        private void LoadAll()
         {
-            if (!File.Exists(infFile))
+            if (!File.Exists(filename))
                 return;
 
-            using (var sr = new StreamReader(infFile))
+            using (var sr = XmlReader.Create(filename))
             {
-                var serial = new XmlSerializer(typeof(List<Infektion>));
-                infektions = (List<Infektion>)serial.Deserialize(sr);
+                var sett = new DataContractSerializerSettings();
+                sett.PreserveObjectReferences = true;
+
+                var serial = new DataContractSerializer(container.GetType(), sett);
+                container = (XmlDataContainer)serial.ReadObject(sr);
             }
         }
 
         private void SaveInf()
         {
-            using (var sw = new StreamWriter(infFile))
+            using (var sw = XmlWriter.Create(filename, new XmlWriterSettings() { Indent = true }))
             {
-                var serial = new XmlSerializer(typeof(List<Infektion>));
-                serial.Serialize(sw, infektions);
+                var sett = new DataContractSerializerSettings();
+                sett.PreserveObjectReferences = true;
+
+                var serial = new DataContractSerializer(container.GetType(), sett);
+                serial.WriteObject(sw, container);
             }
         }
 
         public void Add<T>(T entity) where T : Entity
         {
             if (entity is Infektion i)
-                infektions.Add(i);
+                container.Infektionen.Add(i);
+            if (entity is Land l)
+                container.Laender.Add(l);
+            if (entity is Region r)
+                container.Regionen.Add(r);
+            if (entity is Virus v)
+                container.Viren.Add(v);
+
+            entity.Id = GetAll<T>().Max(x => x.Id) + 1;
         }
 
         public void Delete<T>(T entity) where T : Entity
         {
             if (entity is Infektion i)
-                infektions.Remove(i);
+                container.Infektionen.Remove(i);
+            if (entity is Virus v)
+                container.Viren.Remove(v);
+            if (entity is Region r)
+                container.Regionen.Remove(r);
+            if (entity is Land llll)
+                container.Laender.Remove(llll);
         }
 
         public IEnumerable<T> GetAll<T>() where T : Entity
         {
             if (typeof(T) == typeof(Infektion))
-                return infektions.Cast<T>();
+                return container.Infektionen.Cast<T>();
+
+            if (typeof(T) == typeof(Land))
+                return container.Laender.Cast<T>();
+
+            if (typeof(T) == typeof(Region))
+                return container.Regionen.Cast<T>();
+
+            if (typeof(T) == typeof(Virus))
+                return container.Viren.Cast<T>();
 
             throw new NotImplementedException();
         }
 
         public T GetById<T>(int id) where T : Entity
         {
-            throw new NotImplementedException();
+            return GetAll<T>().FirstOrDefault(x => x.Id == id);
         }
 
         public void SaveAll()
@@ -74,6 +115,11 @@ namespace ppedv.Pandemia.Data.XML
         public void Update<T>(T entity) where T : Entity
         {
             throw new NotImplementedException();
+        }
+
+        public void Dispose()
+        {
+          
         }
     }
 }
