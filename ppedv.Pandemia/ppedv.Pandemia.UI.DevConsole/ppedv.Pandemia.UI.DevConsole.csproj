@@ -59,5 +59,11 @@
       <Name>ppedv.Pandemia.Model</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll">
+      <Link>EntityFramework.SqlServer.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

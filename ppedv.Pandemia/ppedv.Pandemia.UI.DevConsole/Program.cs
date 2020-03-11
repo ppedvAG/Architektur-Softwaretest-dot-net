@@ -12,14 +12,18 @@ namespace ppedv.Pandemia.UI.DevConsole
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("*** Pandemia v0.1 ***");
             var core = new Core();
 
             foreach (var inf in core.Repository.GetAll<Infektion>())
             {
-                Console.WriteLine($"{inf.Person} ({inf.GebDatum:d}) aus {inf.Wohnort.Name},{inf.Wohnort.Land.Name}");
+                Console.WriteLine($"{inf.Person} ({inf.GebDatum:d}) aus {inf?.Wohnort?.Name},{inf?.Wohnort?.Land?.Name}");
                 inf.Viren.ToList().ForEach(x => Console.WriteLine($"\t {x.Name}"));
             }
 
+
+            Console.WriteLine("Ende");
+            Console.ReadKey();
         }
     }
 }
