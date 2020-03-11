@@ -18,9 +18,10 @@ namespace ppedv.Pandemia.Data.XML
         public HashSet<Infektion> Infektionen { get; set; } = new HashSet<Infektion>();
         public HashSet<Virus> Viren { get; set; } = new HashSet<Virus>();
 
+
     }
 
-    public class XmlRepository : IRepository,IDisposable
+    public class XmlRepository : IRepository, IDisposable
     {
         XmlDataContainer container = new XmlDataContainer();
         string filename;
@@ -45,17 +46,6 @@ namespace ppedv.Pandemia.Data.XML
             }
         }
 
-        private void SaveInf()
-        {
-            using (var sw = XmlWriter.Create(filename, new XmlWriterSettings() { Indent = true }))
-            {
-                var sett = new DataContractSerializerSettings();
-                sett.PreserveObjectReferences = true;
-
-                var serial = new DataContractSerializer(container.GetType(), sett);
-                serial.WriteObject(sw, container);
-            }
-        }
 
         public void Add<T>(T entity) where T : Entity
         {
@@ -107,19 +97,32 @@ namespace ppedv.Pandemia.Data.XML
 
         public void SaveAll()
         {
-            SaveInf();
+            using (var sw = XmlWriter.Create(filename, new XmlWriterSettings() { Indent = true }))
+            {
+                var sett = new DataContractSerializerSettings();
+                sett.PreserveObjectReferences = true;
+
+                var serial = new DataContractSerializer(container.GetType(), sett);
+                serial.WriteObject(sw, container);
+            }
         }
 
 
-
+        //nur online...
         public void Update<T>(T entity) where T : Entity
         {
-            throw new NotImplementedException();
+            var loaded = GetById<T>(entity.Id);
+            if (loaded != null)
+                Delete<T>(loaded);
+
+            Add(entity);
+            entity.Id = loaded.Id;
+
         }
 
         public void Dispose()
         {
-          
+
         }
     }
 }

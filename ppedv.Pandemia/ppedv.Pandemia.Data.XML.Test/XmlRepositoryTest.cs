@@ -125,6 +125,9 @@ namespace ppedv.Pandemia.Data.XML.Test
 
                 using (var repo = new XmlRepository(fn))
                 {
+                    inf.Viren.ToList().ForEach(x => repo.Add(x));
+                    repo.Add(inf.Wohnort.Land);
+                    repo.Add(inf.Wohnort);
                     repo.Add(inf);
                     repo.SaveAll();
                 }

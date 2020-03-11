@@ -19,7 +19,19 @@ namespace ppedv.Pandemia.UI.DevConsole
             {
                 Console.WriteLine($"{inf.Person} ({inf.GebDatum:d}) aus {inf?.Wohnort?.Name},{inf?.Wohnort?.Land?.Name}");
                 inf.Viren.ToList().ForEach(x => Console.WriteLine($"\t {x.Name}"));
+
+                if (inf.Id == 240)
+                    inf.Person = "DU BIST KRANK!!!";
+
+              
             }
+
+            var land = core.Repository.GetAll<Land>().Where(x => x.Name.StartsWith("Bayer")).FirstOrDefault();
+            if (land != null)
+                land.Name = "Baden-Württemberg";
+
+
+            core.Repository.SaveAll();
 
 
             Console.WriteLine("Ende");

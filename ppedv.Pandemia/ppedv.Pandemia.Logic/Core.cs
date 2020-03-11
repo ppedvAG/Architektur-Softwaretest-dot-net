@@ -11,7 +11,9 @@ namespace ppedv.Pandemia.Logic
             Repository = repo;
         }
 
-        public Core() : this(new Data.EF.EfRepository())
+        //public Core() : this(new Data.EF.EfRepository())
+        //{ }
+        public Core() : this(new Data.XML.XmlRepository(@"C:\Users\ar2\source\repos\ppedvAG\Architekt_NBG_09032020\ppedv.Pandemia\ppedv.Pandemia.Data.XML.Test\bin\Debug\AutoFix.xml"))
         { }
 
     }

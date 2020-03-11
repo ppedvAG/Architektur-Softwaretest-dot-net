@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ppedv.Pandemia.Data.EF\ppedv.Pandemia.Data.EF.csproj" />
+    <ProjectReference Include="..\ppedv.Pandemia.Data.XML\ppedv.Pandemia.Data.XML.csproj" />
     <ProjectReference Include="..\ppedv.Pandemia.Model\ppedv.Pandemia.Model.csproj" />
   </ItemGroup>
 
