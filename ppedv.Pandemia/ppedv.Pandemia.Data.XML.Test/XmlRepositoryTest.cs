@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using AutoFixture;
@@ -145,6 +146,16 @@ namespace ppedv.Pandemia.Data.XML.Test
                 }
             }
 
+        }
+
+        [TestMethod]
+        public void XmlDataContainer_getType()
+        {
+            XmlDataContainer con = new XmlDataContainer();
+            con.Laender.Add(new Land() { Name = "The land" });
+            HashSet<Land> resutl = con.GetSet<Land>();
+
+            Assert.IsInstanceOfType(resutl, typeof(HashSet<Land>));
         }
     }
 }
