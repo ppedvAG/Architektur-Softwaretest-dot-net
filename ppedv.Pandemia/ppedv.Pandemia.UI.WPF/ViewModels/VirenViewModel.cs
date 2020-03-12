@@ -1,11 +1,7 @@
 ﻿using ppedv.Pandemia.Logic;
 using ppedv.Pandemia.Model;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+using System.Windows.Input;
 
 namespace ppedv.Pandemia.UI.WPF.ViewModels
 {
@@ -27,9 +23,13 @@ namespace ppedv.Pandemia.UI.WPF.ViewModels
             }
         }
 
+        public ICommand SaveCommand { get; set; }
+
         public VirenViewModel()
         {
             Virenliste = new ObservableCollection<Virus>(core.Repository.GetAll<Virus>());
+
+            SaveCommand = new RelayCommand(o => core.Repository.SaveAll());
         }
 
         public string Name
@@ -50,6 +50,8 @@ namespace ppedv.Pandemia.UI.WPF.ViewModels
                     SelectedVirus.Name = value;
 
                 OnPropChanged("");
+                IChanged();
+                
 
                 //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Name)));
                 //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Namelength)));

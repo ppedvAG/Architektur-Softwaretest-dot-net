@@ -12,11 +12,12 @@
     </UserControl.DataContext>
     <DockPanel>
         <WrapPanel DockPanel.Dock="Top" Margin="8">
-            <Button>Speichern</Button>
+            <Button Command="{Binding SaveCommand}">Speichern</Button>
             <Button>Neu</Button>
             <Button>Löschen</Button>
         </WrapPanel>
-        <ListBox DisplayMemberPath="Name" SelectedItem="{Binding SelectedVirus}" ItemsSource="{Binding Virenliste}" Width="200" DockPanel.Dock="Left"/>
+        <ListBox DisplayMemberPath="Name" SelectedItem="{Binding SelectedVirus,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Virenliste}" Width="200" DockPanel.Dock="Left"/>
+        <!--<DataGrid  SelectedItem="{Binding SelectedVirus,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Virenliste}" Width="200" DockPanel.Dock="Left"/>-->
         <Grid Margin="24">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -28,7 +29,6 @@
             </Grid.RowDefinitions>
             <Label>Name</Label>
             <StackPanel Grid.Column="1">
-
                 <TextBox Text="{Binding Name,UpdateSourceTrigger=PropertyChanged}" />
                 <TextBox Text="{Binding SelectedVirus.Name,UpdateSourceTrigger=PropertyChanged}" />
                 <TextBlock Text="{Binding Namelength}"/>
