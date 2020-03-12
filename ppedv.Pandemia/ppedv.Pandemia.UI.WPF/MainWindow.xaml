@@ -7,10 +7,13 @@
         xmlns:view="clr-namespace:ppedv.Pandemia.UI.WPF.View"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <!--<Window.Style>
+        <Style TargetType="Window" BasedOn="{StaticResource {x:Type Window}}"/>
+    </Window.Style>-->
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="File">
-                <MenuItem Header="Open"/>
+                <MenuItem Click="AAHHHH" Header="Open"/>
                 <MenuItem Header="Close"/>
                 <Separator/>
                 <MenuItem Header="Exit"/>

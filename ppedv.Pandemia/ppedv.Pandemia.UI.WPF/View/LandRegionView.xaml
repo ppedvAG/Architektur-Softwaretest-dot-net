@@ -4,11 +4,35 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ppedv.Pandemia.UI.WPF.View"
+             xmlns:vm="clr-namespace:ppedv.Pandemia.UI.WPF.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Viewbox>
-            <TextBlock>Länder / Region</TextBlock>
-        </Viewbox>
-    </Grid>
+    <UserControl.DataContext>
+        <vm:LandRegionViewModel/>
+    </UserControl.DataContext>
+
+    <TreeView ItemsSource="{Binding LandTreeViewItems}" >
+        <TreeView.Resources>
+            <HierarchicalDataTemplate  ItemsSource="{Binding Viren}" 
+                                      DataType="{x:Type vm:LandTreeViewItem}">
+                <TextBlock Text="{Binding Land.Name}"/>
+            </HierarchicalDataTemplate>
+
+            <HierarchicalDataTemplate ItemsSource="{Binding Infektionen}" 
+                                      DataType="{x:Type vm:VirusTreeViewItem}">
+                <TextBlock Text="{Binding Virus.Name}"/>
+            </HierarchicalDataTemplate>
+
+            <DataTemplate DataType="{x:Type vm:InfektionsTreeViewItem}">
+                <StackPanel Orientation="Horizontal" Background="Aqua">
+                    <TextBox Text="{Binding Infektion.Person}"/>
+                    <TextBlock Background="Beige" Text="{Binding VirenCount}"/>
+                </StackPanel>
+            </DataTemplate>
+        </TreeView.Resources>
+
+    </TreeView>
+
+
+
 </UserControl>

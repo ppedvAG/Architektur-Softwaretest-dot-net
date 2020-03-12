@@ -24,5 +24,13 @@ namespace ppedv.Pandemia.UI.WPF
         {
             InitializeComponent();
         }
+
+        private void AAHHHH(object sender, RoutedEventArgs e)
+        {
+            var win = new Window();
+            var view = new View.VirenView();
+            win.Content = view;
+            win.ShowDialog();
+        }
     }
 }

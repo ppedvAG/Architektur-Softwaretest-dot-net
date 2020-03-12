@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AdonisUI" Version="1.14.0" />
+    <PackageReference Include="AdonisUI.ClassicTheme" Version="1.14.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ppedv.Pandemia.Logic\ppedv.Pandemia.Logic.csproj" />
     <ProjectReference Include="..\ppedv.Pandemia.Model\ppedv.Pandemia.Model.csproj" />
   </ItemGroup>

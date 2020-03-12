@@ -119,7 +119,7 @@ namespace ppedv.Pandemia.Data.XML.Test
             var fix = new Fixture();
 
             fix.Behaviors.Add(new OmitOnRecursionBehavior());
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 10; i++)
             {
 
                 var inf = fix.Create<Infektion>();

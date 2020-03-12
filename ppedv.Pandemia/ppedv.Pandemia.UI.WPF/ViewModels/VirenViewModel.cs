@@ -30,7 +30,7 @@ namespace ppedv.Pandemia.UI.WPF.ViewModels
 
         public VirenViewModel()
         {
-            LoadViren();
+            //LoadViren();
 
             SaveCommand = new RelayCommand(o => core.Repository.SaveAll());
             LoadCommand = new RelayCommand(o => LoadViren());
