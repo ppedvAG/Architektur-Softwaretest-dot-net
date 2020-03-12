@@ -1,4 +1,7 @@
-﻿using ppedv.Pandemia.Model.Contracts;
+﻿using ppedv.Pandemia.Model;
+using ppedv.Pandemia.Model.Contracts;
+using System;
+using System.Linq;
 
 namespace ppedv.Pandemia.Logic
 {
@@ -10,6 +13,22 @@ namespace ppedv.Pandemia.Logic
         {
             Repository = repo;
         }
+
+        public bool IsLandInfected(Land land)
+        {
+            if (land == null)
+                throw new ArgumentNullException();
+
+            return land.Region.Any(x => x.Infektionen.Any());
+        }
+
+        public Land GetLandMitMeistenInfectionen()
+        {
+            return Repository.GetAll<Land>()
+                             .OrderByDescending(x => x.Region.Sum(y => y.Infektionen.Count))
+                             .FirstOrDefault();
+        }
+
 
         //public Core() : this(new Data.EF.EfRepository())
         //{ }

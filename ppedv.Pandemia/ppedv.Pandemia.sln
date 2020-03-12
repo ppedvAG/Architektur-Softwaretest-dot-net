@@ -3,19 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.Pandemia.Model", "ppedv.Pandemia.Model\ppedv.Pandemia.Model.csproj", "{6F5931C3-0136-45C7-932B-72E91B5E1A00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ppedv.Pandemia.Model", "ppedv.Pandemia.Model\ppedv.Pandemia.Model.csproj", "{6F5931C3-0136-45C7-932B-72E91B5E1A00}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.Pandemia.Data.EF", "ppedv.Pandemia.Data.EF\ppedv.Pandemia.Data.EF.csproj", "{2E14CDA3-3B6A-45FA-9026-F626F9559804}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.Pandemia.Data.EF.Tests", "ppedv.Pandemia.Data.EF.Tests\ppedv.Pandemia.Data.EF.Tests.csproj", "{40BF772E-FD97-4AA5-939B-DBC0AA7FDD47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.Pandemia.Logic", "ppedv.Pandemia.Logic\ppedv.Pandemia.Logic.csproj", "{B06950AC-02BA-4D02-9048-B6BC265AC485}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ppedv.Pandemia.Logic", "ppedv.Pandemia.Logic\ppedv.Pandemia.Logic.csproj", "{B06950AC-02BA-4D02-9048-B6BC265AC485}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.Pandemia.UI.DevConsole", "ppedv.Pandemia.UI.DevConsole\ppedv.Pandemia.UI.DevConsole.csproj", "{3E2E6491-9BF3-450E-B2AE-B9EECBBB9C04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.Pandemia.Data.XML", "ppedv.Pandemia.Data.XML\ppedv.Pandemia.Data.XML.csproj", "{D4972863-4817-413F-8DEA-2F39D295E89F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ppedv.Pandemia.Data.XML", "ppedv.Pandemia.Data.XML\ppedv.Pandemia.Data.XML.csproj", "{D4972863-4817-413F-8DEA-2F39D295E89F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.Pandemia.Data.XML.Test", "ppedv.Pandemia.Data.XML.Test\ppedv.Pandemia.Data.XML.Test.csproj", "{BF2AA104-0DE1-4775-A628-899655B320A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.Pandemia.Logic.Tests", "ppedv.Pandemia.Logic.Tests\ppedv.Pandemia.Logic.Tests.csproj", "{132C554B-9641-4892-88CB-BF2515CA68A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{BF2AA104-0DE1-4775-A628-899655B320A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF2AA104-0DE1-4775-A628-899655B320A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF2AA104-0DE1-4775-A628-899655B320A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{132C554B-9641-4892-88CB-BF2515CA68A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{132C554B-9641-4892-88CB-BF2515CA68A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{132C554B-9641-4892-88CB-BF2515CA68A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{132C554B-9641-4892-88CB-BF2515CA68A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
