@@ -10,29 +10,61 @@
     <UserControl.DataContext>
         <vm:LandRegionViewModel/>
     </UserControl.DataContext>
+    <UniformGrid Rows="1">
 
-    <TreeView ItemsSource="{Binding LandTreeViewItems}" >
-        <TreeView.Resources>
-            <HierarchicalDataTemplate  ItemsSource="{Binding Viren}" 
-                                      DataType="{x:Type vm:LandTreeViewItem}">
-                <TextBlock Text="{Binding Land.Name}"/>
-            </HierarchicalDataTemplate>
-
-            <HierarchicalDataTemplate ItemsSource="{Binding Infektionen}" 
+        <DataGrid ItemsSource="{Binding LandTreeViewItems}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Land" Binding="{Binding Land.Name}"/>
+                <DataGridTemplateColumn Header="Tree" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="LandTreeViewItem">
+                            <TreeView ItemsSource="{Binding Viren}" >
+                                <TreeView.Resources>
+                            
+                                    <HierarchicalDataTemplate ItemsSource="{Binding Infektionen}" 
                                       DataType="{x:Type vm:VirusTreeViewItem}">
-                <TextBlock Text="{Binding Virus.Name}"/>
-            </HierarchicalDataTemplate>
+                                        <TextBlock Text="{Binding Virus.Name}"/>
+                                    </HierarchicalDataTemplate>
 
-            <DataTemplate DataType="{x:Type vm:InfektionsTreeViewItem}">
-                <StackPanel Orientation="Horizontal" Background="Aqua">
-                    <TextBox Text="{Binding Infektion.Person}"/>
-                    <TextBlock Background="Beige" Text="{Binding VirenCount}"/>
-                </StackPanel>
-            </DataTemplate>
-        </TreeView.Resources>
+                                    <DataTemplate DataType="{x:Type vm:InfektionsTreeViewItem}">
+                                        <StackPanel Orientation="Horizontal" Background="Aqua">
+                                            <TextBox Text="{Binding Infektion.Person}"/>
+                                            <TextBlock Background="Beige" Text="{Binding VirenCount}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </TreeView.Resources>
 
-    </TreeView>
+                            </TreeView>
 
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+            
+        </DataGrid>
+        
+        <TreeView ItemsSource="{Binding LandTreeViewItems}" >
+            <TreeView.Resources>
+                <HierarchicalDataTemplate  ItemsSource="{Binding Viren}" 
+                                      DataType="{x:Type vm:LandTreeViewItem}">
+                    <TextBlock Text="{Binding Land.Name}"/>
+                </HierarchicalDataTemplate>
 
+                <HierarchicalDataTemplate ItemsSource="{Binding Infektionen}" 
+                                      DataType="{x:Type vm:VirusTreeViewItem}">
+                    <TextBlock Text="{Binding Virus.Name}"/>
+                </HierarchicalDataTemplate>
+
+                <DataTemplate DataType="{x:Type vm:InfektionsTreeViewItem}">
+                    <StackPanel Orientation="Horizontal" Background="Aqua">
+                        <TextBox Text="{Binding Infektion.Person}"/>
+                        <TextBlock Background="Beige" Text="{Binding VirenCount}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </TreeView.Resources>
+
+        </TreeView>
+
+    </UniformGrid>
 
 </UserControl>
