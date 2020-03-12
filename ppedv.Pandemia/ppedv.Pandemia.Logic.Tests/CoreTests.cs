@@ -14,7 +14,7 @@ namespace ppedv.Pandemia.Logic.Tests
         {
             var core = new Core();
 
-            Assert.ThrowsException<ArgumentNullException>(() => core.IsLandInfected(null));
+            Assert.ThrowsException<ArgumentNullException>(() => core.LandService.IsLandInfected(null));
         }
 
         [TestMethod]
@@ -24,7 +24,7 @@ namespace ppedv.Pandemia.Logic.Tests
             var land = new Land();
             land.Region.Add(new Region());
 
-            Assert.IsFalse(core.IsLandInfected(land));
+            Assert.IsFalse(core.LandService.IsLandInfected(land));
         }
 
         [TestMethod]
@@ -33,7 +33,7 @@ namespace ppedv.Pandemia.Logic.Tests
             var core = new Core();
             var land = new Land();
 
-            Assert.IsFalse(core.IsLandInfected(land));
+            Assert.IsFalse(core.LandService.IsLandInfected(land));
         }
 
         [TestMethod]
@@ -46,11 +46,11 @@ namespace ppedv.Pandemia.Logic.Tests
             land.Region.Add(r);
 
             r.Infektionen.Add(new Infektion() { Wohnort = r });
-            Assert.IsTrue(core.IsLandInfected(land));
+            Assert.IsTrue(core.LandService.IsLandInfected(land));
 
             //mit 2 infektionen sollte auch ok sein
             r.Infektionen.Add(new Infektion() { Wohnort = r });
-            Assert.IsTrue(core.IsLandInfected(land));
+            Assert.IsTrue(core.LandService.IsLandInfected(land));
         }
 
         [TestMethod]
@@ -58,7 +58,7 @@ namespace ppedv.Pandemia.Logic.Tests
         {
             var core = new Core(new TestRepo());
 
-            var result = core.GetLandMitMeistenInfectionen();
+            var result = core.LandService.GetLandMitMeistenInfectionen();
 
             Assert.AreEqual("l2", result.Name);
         }
@@ -90,7 +90,7 @@ namespace ppedv.Pandemia.Logic.Tests
             });
             var core = new Core(mock.Object);
 
-            var result = core.GetLandMitMeistenInfectionen();
+            var result = core.LandService.GetLandMitMeistenInfectionen();
 
             Assert.AreEqual("l2", result.Name);
         }

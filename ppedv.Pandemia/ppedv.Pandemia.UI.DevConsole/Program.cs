@@ -33,6 +33,12 @@ namespace ppedv.Pandemia.UI.DevConsole
 
             core.Repository.SaveAll();
 
+            Console.WriteLine($"Bestes Land: {core.LandService.GetLandMitMeistenInfectionen().Name}");
+
+            for (int i = 0; i < 100; i++)
+            {
+                Console.WriteLine(Guid.NewGuid());
+            }
 
             Console.WriteLine("Ende");
             Console.ReadKey();
