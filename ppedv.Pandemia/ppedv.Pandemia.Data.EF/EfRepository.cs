@@ -1,5 +1,6 @@
 ﻿using ppedv.Pandemia.Model;
 using ppedv.Pandemia.Model.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -24,7 +25,7 @@ namespace ppedv.Pandemia.Data.EF
             return context.Set<T>().ToList();
         }
 
-        public T GetById<T>(int id) where T : Entity
+        public T GetById<T>(Guid id) where T : Entity
         {
             return context.Set<T>().Find(id);
         }

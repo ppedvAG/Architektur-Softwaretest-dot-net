@@ -58,7 +58,7 @@ namespace ppedv.Pandemia.Data.XML
             if (entity is Virus v)
                 container.Viren.Add(v);
 
-            entity.Id = GetAll<T>().Max(x => x.Id) + 1;
+            //entity.Id = GetAll<T>().Max(x => x.Id) + 1;
         }
 
         public void Delete<T>(T entity) where T : Entity
@@ -90,7 +90,7 @@ namespace ppedv.Pandemia.Data.XML
             throw new NotImplementedException();
         }
 
-        public T GetById<T>(int id) where T : Entity
+        public T GetById<T>(Guid id) where T : Entity
         {
             return GetAll<T>().FirstOrDefault(x => x.Id == id);
         }
