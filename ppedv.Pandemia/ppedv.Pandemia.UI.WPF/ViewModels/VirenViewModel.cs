@@ -1,6 +1,8 @@
 ﻿using ppedv.Pandemia.Logic;
 using ppedv.Pandemia.Model;
+using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 
 namespace ppedv.Pandemia.UI.WPF.ViewModels
@@ -8,68 +10,48 @@ namespace ppedv.Pandemia.UI.WPF.ViewModels
     public class VirenViewModel : ViewModelBase
     {
         Core core = new Core();
-        private Virus selectedVirus;
+        private VirenViewItem selectedVirus;
 
-        public ObservableCollection<Virus> Virenliste { get; set; }
+        public ObservableCollection<VirenViewItem> Virenliste { get; set; } = new ObservableCollection<VirenViewItem>();
 
-        public Virus SelectedVirus
+        public VirenViewItem SelectedVirus
         {
             get => selectedVirus;
             set
             {
                 selectedVirus = value;
                 IChanged();
-                OnPropChanged(nameof(Name));
             }
         }
 
         public ICommand SaveCommand { get; set; }
+        public ICommand LoadCommand { get; set; }
+        public ICommand NewCommand { get; set; }
 
         public VirenViewModel()
         {
-            Virenliste = new ObservableCollection<Virus>(core.Repository.GetAll<Virus>());
+            LoadViren();
 
             SaveCommand = new RelayCommand(o => core.Repository.SaveAll());
+            LoadCommand = new RelayCommand(o => LoadViren());
+            NewCommand = new RelayCommand(CreateNewVirus);
         }
 
-        public string Name
+        private void CreateNewVirus(object obj)
         {
-            get
-            {
-                if (SelectedVirus == null)
-                    return "--";
+            var newVirus = new Virus() { Name = "NEU" };
+            core.Repository.Add(newVirus);
 
-                return SelectedVirus.Name;
-            }
-            set
-            {
-                //   if (string.IsNullOrWhiteSpace(value))
-                //       throw new ValidationException("blöd!");
+            var newItem = new VirenViewItem(newVirus);
+            Virenliste.Add(newItem);
 
-                if (SelectedVirus != null)
-                    SelectedVirus.Name = value;
-
-                OnPropChanged("");
-                IChanged();
-                
-
-                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Name)));
-                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Namelength)));
-
-            }
+            SelectedVirus = newItem;
         }
 
-        public string Namelength
+        private void LoadViren()
         {
-            get
-            {
-                if (SelectedVirus == null)
-                    return "--";
-                return SelectedVirus.Name.Length.ToString();
-            }
+            Virenliste.Clear();
+            core.Repository.GetAll<Virus>().ToList().ForEach(x => Virenliste.Add(new VirenViewItem(x)));
         }
-
-
-
     }
 }

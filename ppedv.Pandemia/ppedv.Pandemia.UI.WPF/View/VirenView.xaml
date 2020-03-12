@@ -12,12 +12,23 @@
     </UserControl.DataContext>
     <DockPanel>
         <WrapPanel DockPanel.Dock="Top" Margin="8">
+            <Button Command="{Binding LoadCommand}">Laden</Button>
             <Button Command="{Binding SaveCommand}">Speichern</Button>
-            <Button>Neu</Button>
+            <Button Command="{Binding NewCommand}">Neu</Button>
             <Button>Löschen</Button>
         </WrapPanel>
-        <ListBox DisplayMemberPath="Name" SelectedItem="{Binding SelectedVirus,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Virenliste}" Width="200" DockPanel.Dock="Left"/>
-        <!--<DataGrid  SelectedItem="{Binding SelectedVirus,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Virenliste}" Width="200" DockPanel.Dock="Left"/>-->
+        <ListBox SelectedItem="{Binding SelectedVirus,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Virenliste}" Width="200" DockPanel.Dock="Left">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Background="Aqua">
+                        <TextBlock Text="{Binding Name}"/>
+                        <TextBlock Text="{Binding AnzahlInfektionen}"/>
+                        <TextBlock Text="{Binding Namelength}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <DataGrid  SelectedItem="{Binding SelectedVirus,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Virenliste}" Width="200" DockPanel.Dock="Left"/>
         <Grid Margin="24">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
